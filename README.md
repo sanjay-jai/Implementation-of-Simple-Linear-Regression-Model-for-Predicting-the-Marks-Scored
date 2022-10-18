@@ -1,6 +1,6 @@
 # Implementation of Simple Linear Regression Model for Predicting the Marks Scored
 
-## AIM:
+## Aim:
 To write a program to predict the marks scored by a student using the simple linear regression model.
 
 ## Equipments Required:
@@ -58,4 +58,4 @@ plt.show()
 ![image](https://user-images.githubusercontent.com/95969295/196493624-19a2a8de-cb33-4c49-9227-6abe3938cfe2.png)
 
 ## Result:
-Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
+Thus, the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
