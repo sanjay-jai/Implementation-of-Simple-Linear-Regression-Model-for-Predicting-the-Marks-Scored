@@ -24,69 +24,71 @@ Register Number:  212220040142
 */
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
+df=pd.read_csv('student_scores.csv')
+df.head()
+df.tail()
 
-dataset = pd.read_csv('/content/student_scores.csv')
-
-dataset.head()
-
-dataset.tail()
-X = dataset.iloc[:,:-1].values
-Y = dataset.iloc[:,1].values
+X=df.iloc[:,:-1].values
+Y=df.iloc[:,1].values
+print("X=",X)
+print("Y=",Y)
 
 from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=1/3,random_state=0)
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=1/3,random_state=0)
 
 from sklearn.linear_model import LinearRegression
 reg=LinearRegression()
 reg.fit(X_train,Y_train)
 
-Y_pred = reg.predict(X_test)
-Y_pred
+Y_pred=reg.predict(X_test)
+import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error,mean_squared_error
 
-Y_test
+plt.scatter(X_train,Y_train,color='red')
+plt.plot(X_train,reg.predict(X_train),color='yellow')
+plt.title('Training set(H vs S)',color='blue')
+plt.xlabel('Hours',color='green')
+plt.ylabel('Scores',color='green')
 
-plt.scatter(X_train,Y_train,color="green")
-plt.plot(X_train,reg.predict(X_train),color="red")
-plt.title('Training set(H vs S)')
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
+plt.scatter(X_test,Y_test,color='black')
+plt.plot(X_test,reg.predict(X_test),color='blue')
+plt.title('Test set(H vs S)',color='green')
+plt.xlabel('Hours',color='brown')
+plt.ylabel('Scores',color='brown')
 
-plt.scatter(X_test,Y_test,color="blue")
-plt.plot(X_test,reg.predict(X_test),color="silver")
-plt.title('Test set(H vs S)')
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-
-mse = mean_squared_error(Y_test,Y_pred)
+mse=mean_squared_error(Y_test,Y_pred)
 print('MSE = ',mse)
 
-mae = mean_absolute_error(Y_test,Y_pred)
+mae=mean_absolute_error(Y_test,Y_pred)
 print('MAE = ',mae)
 
-rmse=np.sqrt(mse)
-print("RMSE = ",rmse)
+rmse=np.sqrt(mse) 
+print('RMSE = ',rmse)
+
 
 ```
 ## Output:
-![image](https://user-images.githubusercontent.com/95969295/202352530-5d5c6ab9-c6b4-4f3c-af1d-ed951076744e.png)
+![image](https://user-images.githubusercontent.com/95969295/202860194-a8220016-f134-4cbb-96d2-ec5fdc7c4bcb.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202352662-66cf94e8-6680-4cb4-ad91-39b7b94eaeff.png)
+![image](https://user-images.githubusercontent.com/95969295/202860241-d53ce510-c5ca-43f3-a594-292b54ab36a0.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202352727-5116f14d-3b11-40ef-a41d-c54e5834a670.png)
+![image](https://user-images.githubusercontent.com/95969295/202860337-89cbb21b-0d61-48c4-89a4-9a58ffc3f91a.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202352794-ed05df8c-9341-43d9-b859-e989e6ad2f9a.png)
+![image](https://user-images.githubusercontent.com/95969295/202860384-05cfca5d-0049-454c-a3e8-0b4c45d74852.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202352916-4a46ccd0-8e42-42ca-a316-2aab1a83c202.png)
+![image](https://user-images.githubusercontent.com/95969295/202860423-0109070b-8b5c-41bd-8d13-a90b1365ed73.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202352993-4873886a-b6ad-4121-afe5-c24c00ace280.png)
+![image](https://user-images.githubusercontent.com/95969295/202860455-3b3bc448-daca-429a-942d-fb349820eb00.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202353096-0f9f0ccf-a28a-493e-aadb-8c6fe38366af.png)
+![image](https://user-images.githubusercontent.com/95969295/202860481-84789b57-b000-4533-9dc8-0b358fd14945.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202353169-5cd2abd2-f7ee-41af-b168-d5c3eea92cb1.png)
+![image](https://user-images.githubusercontent.com/95969295/202860504-231dc1c9-b36a-44e7-942f-7404ea60b54c.png)
+
+
+
+
+
+
 
 
 ## Result:
