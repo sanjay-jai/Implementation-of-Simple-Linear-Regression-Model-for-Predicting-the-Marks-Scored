@@ -24,37 +24,45 @@ Register Number:  212220040142
 */
 import numpy as np
 import pandas as pd
-df=pd.read_csv('student_scores.csv')
-df.head()
-df.tail()
+from sklearn.metrics import mean_absolute_error,mean_squared_error
+import matplotlib.pyplot as plt
+dataset = pd.read_csv('/content/student_scores.csv')
 
-X=df.iloc[:,:-1].values
-Y=df.iloc[:,1].values
-print("X=",X)
-print("Y=",Y)
+dataset.head()
+dataset.tail()
+
+#assigning hours to X & scores to Y
+X = dataset.iloc[:,:-1].values
+X
+
+Y = dataset.iloc[:,1].values
+Y
 
 from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=1/3,random_state=0)
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=1/3,random_state=0)
 
 from sklearn.linear_model import LinearRegression
 reg=LinearRegression()
 reg.fit(X_train,Y_train)
 
-Y_pred=reg.predict(X_test)
-import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
+Y_pred = reg.predict(X_test)
+Y_pred
 
-plt.scatter(X_train,Y_train,color='red')
-plt.plot(X_train,reg.predict(X_train),color='yellow')
-plt.title('Training set(H vs S)',color='blue')
-plt.xlabel('Hours',color='green')
-plt.ylabel('Scores',color='green')
+Y_test
 
-plt.scatter(X_test,Y_test,color='black')
-plt.plot(X_test,reg.predict(X_test),color='blue')
-plt.title('Test set(H vs S)',color='green')
-plt.xlabel('Hours',color='brown')
-plt.ylabel('Scores',color='brown')
+plt.scatter(X_train,Y_train,color="green")
+plt.plot(X_train,reg.predict(X_train),color="red")
+plt.title('Training set(H vs S)')
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+
+plt.scatter(X_test,Y_test,color="blue")
+plt.plot(X_test,reg.predict(X_test),color="silver")
+plt.title('Test set(H vs S)')
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
 
 mse=mean_squared_error(Y_test,Y_pred)
 print('MSE = ',mse)
@@ -68,21 +76,28 @@ print('RMSE = ',rmse)
 
 ```
 ## Output:
-![image](https://user-images.githubusercontent.com/95969295/202860194-a8220016-f134-4cbb-96d2-ec5fdc7c4bcb.png)
+![image](https://user-images.githubusercontent.com/95969295/204100034-dcd947dd-482c-429c-9e31-a8d02be2585d.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860241-d53ce510-c5ca-43f3-a594-292b54ab36a0.png)
+![image](https://user-images.githubusercontent.com/95969295/204100056-4aeafdc5-1ae7-426b-aae1-c7a6a58ce557.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860337-89cbb21b-0d61-48c4-89a4-9a58ffc3f91a.png)
+![image](https://user-images.githubusercontent.com/95969295/204100069-c1c937b0-d7cc-4527-92d8-b5bd9657ae22.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860384-05cfca5d-0049-454c-a3e8-0b4c45d74852.png)
+![image](https://user-images.githubusercontent.com/95969295/204100083-ef69dc84-ec75-41ff-a034-4503602fcf23.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860423-0109070b-8b5c-41bd-8d13-a90b1365ed73.png)
+![image](https://user-images.githubusercontent.com/95969295/204100098-c3f32704-6fe9-4497-be52-f5becf2a442e.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860455-3b3bc448-daca-429a-942d-fb349820eb00.png)
+![image](https://user-images.githubusercontent.com/95969295/204100122-dcdfe122-f1ac-4133-ac23-9e56cac08907.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860481-84789b57-b000-4533-9dc8-0b358fd14945.png)
+![image](https://user-images.githubusercontent.com/95969295/204100139-d2510533-7fc4-4613-8fa2-f7ba04402687.png)
 
-![image](https://user-images.githubusercontent.com/95969295/202860504-231dc1c9-b36a-44e7-942f-7404ea60b54c.png)
+![image](https://user-images.githubusercontent.com/95969295/204100159-79c80e88-d3d0-4327-a863-622706d958d7.png)
+
+![image](https://user-images.githubusercontent.com/95969295/204100182-d9e67f6c-6d10-4f54-96f5-cd164117f33c.png)
+
+![image](https://user-images.githubusercontent.com/95969295/204100201-d43f6725-0e12-43e4-b38a-55432772faa4.png)
+
+![image](https://user-images.githubusercontent.com/95969295/204100211-d76f3dc6-069d-41d2-a07b-8275007d36a5.png)
+
 
 
 
